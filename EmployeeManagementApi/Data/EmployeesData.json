@@ -1,0 +1,44 @@
+[
+	{
+		"Id": "d43395fd-4f7a-4218-b302-70fae3356483",
+		"Name": "Darshan S",
+		"Email": "darshan.s@email.com",
+		"Department": "Dev",
+		"Salary": 50000
+	},
+	{
+		"Id": "a11195fd-4f7a-4218-b302-70fae3356483",
+		"Name": "Takan",
+		"Email": "takan@email.com",
+		"Department": "Dev",
+		"Salary": 70000
+	},
+	{
+		"Id": "a22295fd-4f7a-4218-b302-70fae3356483",
+		"Name": "Pavan L",
+		"Email": "pavan.l@email.com",
+		"Department": "Dev",
+		"Salary": 70000
+	},
+	{
+		"Id": "a33395fd-4f7a-4218-b302-70fae3356483",
+		"Name": "Pavan H",
+		"Email": "pavan.h@email.com",
+		"Department": "Dev",
+		"Salary": 70000
+	},
+	{
+		"Id": "a44495fd-4f7a-4218-b302-70fae3356483",
+		"Name": "John Doe",
+		"Email": "john.doe@email.com",
+		"Department": "Sales",
+		"Salary": 50000
+	},
+	{
+		"Id": "a55595fd-4f7a-4218-b302-70fae3356483",
+		"Name": "Jane Doe",
+		"Email": "jane.doe@email.com",
+		"Department": "Sales",
+		"Salary": 60000
+	}
+]
