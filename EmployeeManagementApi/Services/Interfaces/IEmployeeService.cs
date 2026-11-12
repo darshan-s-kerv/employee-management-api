@@ -1,5 +1,4 @@
-﻿using EmployeeManagementApi.DTO;
-using EmployeeManagementApi.Entities;
+﻿using EmployeeManagementApi.Entities;
 
 namespace EmployeeManagementApi.Services.Interfaces;
 

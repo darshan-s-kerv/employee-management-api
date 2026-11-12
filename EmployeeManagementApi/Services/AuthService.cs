@@ -1,22 +1,15 @@
 ﻿using EmployeeManagementApi.DTO;
 using EmployeeManagementApi.Exceptions;
-using EmployeeManagementApi.Repository;
 using EmployeeManagementApi.Repository.Interfaces;
 using EmployeeManagementApi.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 namespace EmployeeManagementApi.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository) : IAuthService
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly ITokenRepository tokenRepository;
-
-        public AuthService(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
-        {
-            this.userManager = userManager;
-            this.tokenRepository = tokenRepository;
-        }
+        private readonly UserManager<IdentityUser> userManager = userManager;
+        private readonly ITokenRepository tokenRepository = tokenRepository;
 
         public async Task RegisterUser(RegisterUserRequest registerUserRequest)
         {
@@ -59,13 +52,8 @@ namespace EmployeeManagementApi.Services
 
         public async Task<string> LoginUser(LoginUserRequest loginUserRequest)
         {
-            var user = await userManager.FindByEmailAsync(loginUserRequest.Email);
-
-            if (user == null)
-            {
-                throw new ApiException(404, "User not found");
-            }
-
+            var user = await userManager.FindByEmailAsync(loginUserRequest.Email) ?? throw new ApiException(404, "User not found");
+            
             var isPasswordCorrect = await userManager.CheckPasswordAsync(user, loginUserRequest.Password);
 
             if (!isPasswordCorrect)

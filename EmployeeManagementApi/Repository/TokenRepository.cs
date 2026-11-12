@@ -7,17 +7,10 @@ using System.Text;
 
 namespace EmployeeManagementApi.Repository
 {
-    public class TokenRepository : ITokenRepository
+    public class TokenRepository(IConfiguration configuration, UserManager<IdentityUser> userManager) : ITokenRepository
     {
-        private readonly IConfiguration configuration;
-        private readonly UserManager<IdentityUser> userManager;
-
-        public TokenRepository(IConfiguration configuration, UserManager<IdentityUser> userManager)
-        {
-            this.configuration = configuration;
-            this.userManager = userManager;
-        }
-
+        private readonly IConfiguration configuration = configuration;
+        private readonly UserManager<IdentityUser> userManager = userManager;
 
         public async Task<string> CreateJwtToken(IdentityUser user)
         {
@@ -25,8 +18,8 @@ namespace EmployeeManagementApi.Repository
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new(ClaimTypes.Email, user.Email),
+                new(ClaimTypes.NameIdentifier, user.Id)
             };
 
             foreach (var role in roles)

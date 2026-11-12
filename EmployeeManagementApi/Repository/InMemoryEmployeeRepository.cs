@@ -1,7 +1,6 @@
 ﻿using EmployeeManagementApi.Data;
 using EmployeeManagementApi.Entities;
 using EmployeeManagementApi.Repository.Interfaces;
-using System.Text.Json;
 
 namespace EmployeeManagementApi.Repository;
 

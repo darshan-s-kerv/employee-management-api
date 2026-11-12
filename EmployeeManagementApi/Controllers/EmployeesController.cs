@@ -10,16 +10,10 @@ namespace EmployeeManagementApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class EmployeesController : ControllerBase
+public class EmployeesController(IEmployeeService employeeService, IMapper mapper) : ControllerBase
 {
-    private readonly IEmployeeService employeeService;
-    private readonly IMapper mapper;
-
-    public EmployeesController(IEmployeeService employeeService, IMapper mapper)
-    {
-        this.employeeService = employeeService;
-        this.mapper = mapper;
-    }
+    private readonly IEmployeeService employeeService = employeeService;
+    private readonly IMapper mapper = mapper;
 
     [HttpGet]
     [Authorize(Roles = "Admin,Employee")]

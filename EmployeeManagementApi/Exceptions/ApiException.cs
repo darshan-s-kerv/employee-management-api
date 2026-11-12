@@ -1,10 +1,6 @@
 ﻿namespace EmployeeManagementApi.Exceptions;
 
-public class ApiException : Exception
+public class ApiException(int statusCode, string message) : Exception(message)
 {
-    public int StatusCode { get; }
-    public ApiException(int statusCode, string message) : base(message)
-    {
-        StatusCode = statusCode;
-    }
+    public int StatusCode { get; } = statusCode;
 }

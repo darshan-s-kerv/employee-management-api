@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementApi.Repository
 {
-    public class SqlEmployeeRepository : IEmployeeRepository
+    public class SqlEmployeeRepository(AppDbContext dbContext) : IEmployeeRepository
     {
-        private readonly AppDbContext dbContext;
-
-        public SqlEmployeeRepository(AppDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        private readonly AppDbContext dbContext = dbContext;
 
         public async Task AddAsync(Employee employee)
         {

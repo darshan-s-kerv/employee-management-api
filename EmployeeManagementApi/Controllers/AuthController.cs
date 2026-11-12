@@ -7,15 +7,9 @@ namespace EmployeeManagementApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController : ControllerBase
+public class AuthController(IAuthService authService) : ControllerBase
 {
-    private readonly IAuthService authService;
-
-    public AuthController(IAuthService authService)
-    {
-        this.authService = authService;
-    }
-
+    private readonly IAuthService authService = authService;
 
     [HttpPost]
     [Route("Register")]

@@ -14,8 +14,8 @@ public class EmployeeServiceTests
 
     public EmployeeServiceTests()
     {
-        this.employees = SeedData.Get();
-        this.mockRepository = new Mock<IEmployeeRepository>();
+        employees = SeedData.Get();
+        mockRepository = new Mock<IEmployeeRepository>();
     }
 
     [Fact]

@@ -6,14 +6,9 @@ using EmployeeManagementApi.Services.Interfaces;
 
 namespace EmployeeManagementApi.Services;
 
-public class EmployeeService : IEmployeeService
+public class EmployeeService(IEmployeeRepository employeeRepository) : IEmployeeService
 {
-    private readonly IEmployeeRepository employeeRepository;
-
-    public EmployeeService(IEmployeeRepository employeeRepository)
-    {
-        this.employeeRepository = employeeRepository;
-    }
+    private readonly IEmployeeRepository employeeRepository = employeeRepository;
 
     public async Task<List<Employee>> GetAllEmployees()
     {

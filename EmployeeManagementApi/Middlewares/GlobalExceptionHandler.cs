@@ -2,14 +2,9 @@
 
 namespace EmployeeManagementApi.Middlewares;
 
-public class GlobalExceptionHandler
+public class GlobalExceptionHandler(RequestDelegate next)
 {
-    private readonly RequestDelegate next;
-
-    public GlobalExceptionHandler(RequestDelegate next)
-    {
-        this.next = next;
-    }
+    private readonly RequestDelegate next = next;
 
     public async Task InvokeAsync(HttpContext context)
     {
