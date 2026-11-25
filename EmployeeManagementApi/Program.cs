@@ -122,6 +122,24 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    try
+    {
+        var canConnect = await dbContext.Database.CanConnectAsync();
+
+        Console.WriteLine(canConnect
+            ? "Database connection successful!"
+            : "Database connection failed!");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Database connection failed: {ex.Message}");
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

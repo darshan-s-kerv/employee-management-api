@@ -1,0 +1,21 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: EmployeeManagementApi/Dockerfile
+    image: em-api
+    ports:
+      - "5014:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "${ConnectionStrings__DefaultConnection}"
+      Jwt__Key: "${Jwt__Key}"
+      Jwt__Issuer: "${Jwt__Issuer}"
+      Jwt__Audience: "${Jwt__Audience}"
+    volumes:
+      - data-protection-keys:/root/.aspnet/DataProtection-Keys
+    restart: unless-stopped
+
+volumes:
+  data-protection-keys:
