@@ -6,7 +6,6 @@ using EmployeeManagementApi.Services.Interfaces;
 using EmployeeManagementApi.Mappings;
 using EmployeeManagementApi.Data;
 using Microsoft.EntityFrameworkCore;
-using EmployeeManagementApi.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
