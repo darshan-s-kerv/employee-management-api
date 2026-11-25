@@ -36,56 +36,7 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(AutomapperProfile));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString)
-.UseSeeding((context, _) =>
-{
-    var employees = SeedData.Get();
-
-    var existingIds = context.Set<Employee>()
-        .Select(e => e.Id)
-        .ToHashSet();
-
-    var missingEmployees = employees
-        .Where(e => !existingIds.Contains(e.Id))
-        .ToList();
-
-    if (missingEmployees.Count > 0)
-    {
-        context.Set<Employee>().AddRange(missingEmployees);
-        context.SaveChanges();
-    }
-
-    var roles = new[]
-        {
-            new IdentityRole
-            {
-                Id = "1",
-                Name = "Admin",
-                NormalizedName = "ADMIN"
-            },
-            new IdentityRole
-            {
-                Id = "2",
-                Name = "Employee",
-                NormalizedName = "EMPLOYEE"
-            }
-        };
-
-    var existingRoles = context.Set<IdentityRole>()
-        .Select(r => r.Name)
-        .ToHashSet();
-
-    var missingRoles = roles
-            .Where(r => !existingRoles.Contains(r.Name))
-            .ToList();
-
-    if (missingRoles.Count > 0)
-    {
-        context.Set<IdentityRole>().AddRange(missingRoles);
-        context.SaveChanges();
-    }
-})
-);
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
 var jwtAudience = builder.Configuration["Jwt:Audience"];
